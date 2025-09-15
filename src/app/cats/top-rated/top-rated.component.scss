@@ -1,0 +1,22 @@
+.cat-preview {
+  max-width: 480px;
+  margin: 2rem;
+}
+
+
+label {
+  border: 5px white solid;
+}
+
+.item {
+  position: relative;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+}
+
+input:checked + label {
+  border-color: red
+}

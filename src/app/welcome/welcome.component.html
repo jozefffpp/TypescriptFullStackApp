@@ -1,0 +1,29 @@
+<div class="container py-5">
+	<div class="bg-gradient rounded-4 border shadow-sm p-5">
+		<div class="row align-items-center">
+			<div class="col-lg-8 mb-4 mb-lg-0">
+				<h1 class="display-4 fw-bold mb-3 text-white">
+					<fa-icon [icon]="['fas', 'cat']" class="me-3 text-white"></fa-icon>Welcome, Fellow Human!
+				</h1>
+				<p class="lead mb-4 text-white">
+					Dive into the purr-fect world of cat videos! Our rating section features the finest felines,
+					and you can easily discover the top-rated kitties on our dedicated page.
+				</p>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+					<a routerLink="/cats/rate" class="btn btn-primary btn-lg px-4 me-md-2" type="button">
+						<fa-icon [icon]="['fas', 'star']" class="me-2"></fa-icon>Start Rating
+					</a>
+					<a routerLink="/cats/top-rated" class="btn btn-outline-light btn-lg px-4" type="button">
+						<fa-icon [icon]="['fas', 'trophy']" class="me-2"></fa-icon>Top Rated
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-4 text-center d-none d-lg-block">
+				<img src="https://images.freeimages.com/images/large-previews/149/milki-3-1387936.jpg?fmt=webp&h=350"
+					 class="img-fluid rounded-circle border border-5 border-white shadow-sm"
+					 alt="A cute cat looking at the camera"
+					 style="max-width: 300px; height: 300px;">
+			</div>
+		</div>
+	</div>
+</div>

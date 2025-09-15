@@ -1,0 +1,29 @@
+Before starting the application, create postgresql database with name catOfTheDay,
+then set up your DB credentials in './sql/db_credentials.ts'
+
+After database is created and running, run 'node sql/db_connect.js' - this will run the dump.sql
+and content.sql. These files will seed the database with test data.
+
+When this is ready, run the list_users.sql in postgresql console. This will create the get_users_with_scenarios
+function.
+
+Now you have complete, running app. Congrats.
+
+the bootstrap.js will run automatically before the server starts, it will seed the db.json file with data.
+
+*To make your life easier, I know about two problems with the application.*
+
+1. If you are going from frontend App, you have to comment this line out at server/app.ts:
+
+// --- CSRF attact middleware ---
+app.use(csrfMiddleware);
+
+2. If you refresh page on "start rating" page and then go to "top rated", the random cat will appear first in
+the list of top rated, although it is not.
+
+*For testing the request header has to contain*
+
+1. Content-Type: application/json
+2. x-api-key: key123
+3. x-csrf-token: you get the token on: http://localhost:<PORT>/api/csrf-token
+

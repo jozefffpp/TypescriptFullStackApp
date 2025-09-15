@@ -1,0 +1,45 @@
+<loader [isLoading]="(isLoading$ | async) === true"></loader>
+
+<div class="card draw" [class.show-indicator]="showIndicator$ | async">
+
+	<ng-container *ngIf="isLoading$ | async">
+		<div class="placeholder-glow placeholder-image card-img-top"></div>
+		<div class="card-body placeholder-glow">
+			<h5 class="card-title placeholder col-6"></h5>
+			<p class="card-text placeholder col-4"></p>
+			<div class="placeholder-buttons mt-3 d-flex justify-content-end">
+				<span class="placeholder placeholder-lg me-3" style="width: 50px; height: 50px;"></span>
+				<span class="placeholder placeholder-lg me-3" style="width: 50px; height: 50px;"></span>
+				<span class="placeholder placeholder-lg" style="width: 50px; height: 50px;"></span>
+			</div>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="(isLoading$ | async) === false && (cat$ | async) as cat">
+		<img [src]="cat?.image" class="card-img-top card-fade-in" alt="A cat for rating">
+		<div class="card-body">
+			<h5 class="card-title">{{cat?.title}}</h5>
+			<p class="card-text text-secondary">
+				<small>{{cat?.date | date: 'mediumDate'}}</small>
+			</p>
+			<form [formGroup]="form" class="vote-form d-flex justify-content-end">
+				<div class="btn-group" role="group" aria-label="Cat rating">
+					<input id="dislike" hidden type="radio" formControlName="rating" [value]="0"/>
+					<label for="dislike" class="btn btn-outline-danger">
+						<fa-icon [icon]="dislikeIcon" [size]="'2x'"></fa-icon>
+					</label>
+					<input id="neutral" hidden type="radio" formControlName="rating" [value]="2.5"/>
+					<label for="neutral" class="btn btn-outline-warning">
+						<fa-icon [icon]="neutralIcon" [size]="'2x'"></fa-icon>
+					</label>
+					<input id="like" hidden type="radio" formControlName="rating" [value]="5"/>
+					<label for="like" class="btn btn-outline-success">
+						<fa-icon [icon]="likeIcon" [size]="'2x'"></fa-icon>
+					</label>
+				</div>
+			</form>
+		</div>
+	</ng-container>
+
+	<span class="delay-indicator" [class.show-indicator]="showIndicator$ | async"></span>
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+	<header class="d-flex flex-wrap justify-content-center justify-content-lg-between py-3 mb-4">
+
+		<a routerLink="/" class="d-flex align-items-center mb-2 mb-lg-0 me-lg-auto text-decoration-none">
+			<fa-icon [icon]="faCat" [size]="'2x'" class="me-3 text-primary"></fa-icon>
+			<span class="fs-4 fw-bold text-dark">Cat of the Day</span>
+		</a>
+
+		<ul class="nav nav-pills align-items-center">
+			<li class="nav-item">
+				<a routerLink="/users" routerLinkActive="active" class ="nav-link px-3 fw-bold text-dark">List users</a>
+			</li>
+			<li class="nav-item">
+				<a routerLink="/cats/add" routerLinkActive="active" class ="nav-link px-3 fw-bold text-dark">Add cat</a>
+			</li>
+			<li class="nav-item">
+				<a routerLink="/cats/rate" routerLinkActive="active" class="nav-link px-3 fw-bold text-dark">Start rating</a>
+			</li>
+			<li class="nav-item">
+				<a routerLink="/cats/top-rated" routerLinkActive="active" class="nav-link px-3 fw-bold text-dark">Top rated</a>
+			</li>
+		</ul>
+
+	</header>
+</div>

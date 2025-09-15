@@ -1,0 +1,12 @@
+<loader *ngIf="(isLoading$| async); else elseBlock" [isLoading]="true"></loader>
+
+<ng-template #elseBlock>
+	<div *ngIf="cats$ | async" class="row">
+		<div class="item col-sm-6 col-lg-4 mb-4" *ngFor="let cat of cats$ | async; let i = index">
+			<input name="cats" type="radio" [id]="'cats-' + i">
+			<label [for]="'cats-' + i">
+				<img [src]="cat?.image" class="card-img-top">
+			</label>
+		</div>
+	</div>
+</ng-template>

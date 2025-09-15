@@ -1,0 +1,43 @@
+<div class="container my-5 d-flex justify-content-center">
+	<div class="col-12 col-md-8 col-lg-6">
+		<div class="card shadow p-4 rounded-3">
+			<h1 class="text-center h3 fw-bold text-dark mb-2">Edit User</h1>
+			<p class="text-center text-muted mb-4">
+				Editing user with ID: {{ userId }}
+			</p>
+			<div *ngIf="loading()" class="text-center text-muted my-4">
+				Loading user data...
+			</div>
+			<form *ngIf="!loading()" [formGroup]="userForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+				<div class="mb-3">
+					<label for="name" class="form-label text-muted">Name</label>
+					<input type="text" id="name" formControlName="name" class="form-control">
+				</div>
+				<div class="mb-3">
+					<label for="email" class="form-label text-muted">Email</label>
+					<input type="email" id="email" formControlName="email" class="form-control">
+				</div>
+				<div class="mb-3">
+					<label for="timezone_id" class="form-label text-muted">Timezone ID</label>
+					<input type="number" id="timezone_id" formControlName="timezone_id" class="form-control">
+				</div>
+				<div class="mb-3">
+					<label for="country_id" class="form-label text-muted">Country ID</label>
+					<input type="number" id="country_id" formControlName="country_id" class="form-control">
+				</div>
+				<div class="d-flex justify-content-between align-items-center pt-3">
+					<button type="submit" class="btn btn-primary btn-lg rounded-pill px-4">
+						Update User
+					</button>
+					<button type="button" (click)="goBack()" class="btn btn-secondary rounded-pill px-4">
+						Go Back
+					</button>
+				</div>
+			</form>
+
+			<div *ngIf="message()" class="alert mt-4 text-center fw-medium" [ngClass]="{'alert-success': isSuccess(), 'alert-danger': !isSuccess()}">
+				{{ message() }}
+			</div>
+		</div>
+	</div>
+</div>

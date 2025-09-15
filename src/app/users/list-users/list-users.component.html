@@ -1,0 +1,84 @@
+<div class="bg-light min-vh-100 py-5">
+	<div class="container">
+		<!-- Title and description -->
+		<div class="text-center my-4">
+			<h1 class="display-4 fw-bold text-dark">User List</h1>
+			<p class="lead text-secondary">Browse and filter users from the database.</p>
+		</div>
+
+		<!-- Filter and Sort form -->
+		<div class="card p-4 shadow-sm mb-4">
+			<h2 class="h4 fw-bold text-dark mb-3">Filters & Sorting</h2>
+			<form [formGroup]="filterForm">
+				<div class="row g-3">
+					<div class="col-12 col-md-6 col-lg-3">
+						<label for="filter_name" class="form-label text-secondary">Name</label>
+						<input type="text" formControlName="filter_name" placeholder="Filter by name" class="form-control rounded-pill">
+					</div>
+					<div class="col-12 col-md-6 col-lg-3">
+						<label for="filter_organization_id" class="form-label text-secondary">Organization ID</label>
+						<input type="text" formControlName="filter_organization_id" placeholder="Filter by org ID" class="form-control rounded-pill">
+					</div>
+					<div class="col-12 col-md-6 col-lg-3">
+						<label for="sort_by" class="form-label text-secondary">Sort By</label>
+						<select formControlName="sort_by" class="form-select rounded-pill">
+							<option value="id">ID</option>
+							<option value="name">Name</option>
+							<option value="organizations_count">Organizations Count</option>
+						</select>
+					</div>
+					<div class="col-12 col-md-6 col-lg-3">
+						<label for="sort_dir" class="form-label text-secondary">Sort Direction</label>
+						<select formControlName="sort_dir" class="form-select rounded-pill">
+							<option value="ASC">ASC</option>
+							<option value="DESC">DESC</option>
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- User List container -->
+		<div class="card shadow-sm p-4">
+			<div *ngIf="loading()" class="text-center text-secondary py-4">Loading users...</div>
+			<div *ngIf="!loading() && users().length > 0" class="row g-4">
+				@for(user of users(); track user.id) {
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="card p-4 h-100 shadow-sm border">
+							<h3 class="h5 fw-bold text-dark mb-2">{{ user.name }}</h3>
+							<p class="small text-secondary">ID: {{ user.id }}</p>
+							<p class="small text-secondary">Email: {{ user.email }}</p>
+							<ul class="list-unstyled mt-3 small text-dark">
+								<li><span class="fw-medium">Orgs:</span> {{ user.organizations_count }}</li>
+								<li><span class="fw-medium">Scenarios:</span> {{ user.scenarios_count }}</li>
+								<li><span class="fw-medium">Active Scenarios:</span> {{ user.active_scenarios_count }}</li>
+								<li><span class="fw-medium">Timezone:</span> {{ user.timezone_id }}</li>
+								<li><span class="fw-medium">Country:</span> {{ user.country_id }}</li>
+								<li><span class="fw-medium">Locale:</span> {{ user.locale_id }}</li>
+							</ul>
+							<div class="d-flex justify-content-end mt-3">
+								<button (click)="onEditUser(user)" class="btn btn-info btn-sm text-white">
+									Edit User
+								</button>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+			<div *ngIf="!loading() && users().length === 0" class="text-center text-secondary py-4">No users found with the current filters.</div>
+		</div>
+
+		<!-- Pagination -->
+		<div class="d-flex justify-content-between align-items-center mt-4">
+			<button (click)="previousPage()" [disabled]="!canGoBack()"
+					class="btn btn-outline-secondary btn-sm">
+				Previous
+			</button>
+			<span class="text-secondary small">Page {{ currentPage() }}</span>
+			<button (click)="nextPage()" [disabled]="!canGoNext()"
+					class="btn btn-outline-secondary btn-sm">
+				Next
+			</button>
+		</div>
+	</div>
+</div>
